@@ -115,8 +115,8 @@
 .ver-detalle {
   display: inline-block;
   margin-top: 0.6rem;
-  background: var(--rosita);
-  color: var(--indigo);
+  background: var(--celeste);
+  color: var(--amarillo);
   padding: 0.5rem 5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -124,7 +124,7 @@
 }
 
 .ver-detalle:hover {
-  background: var(--amarillo);
+  background: var(--indigo);
 }
 
 .desc-card{
