@@ -1,46 +1,65 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import './style_productos.css'
 import "./Home.css";
 
 const Home = () => {
   return (
-    <div className="home-container">
-      {/* Sección principal */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1 className="hero-title">Bienvenidos a Illumia</h1>
-          <p className="hero-subtitle">
-            Amigurumis hechos con amor, uno más tierno que el otro 💕
-          </p>
-          <a href="/productos" className="hero-button">
-            Ver colección
-          </a>
-        </div>
-      </section>
 
-      {/* Sección de destacados */}
-      <section className="featured">
-        <h2>Nuevos amigurumis</h2>
-        <div className="featured-grid">
-          <div className="card">
-            <img src="./public/img/Makuin.jpg" alt="Conejito pastel" />
-            <h3>Chancho peludito</h3>
-            <p>Mini edición mystery box 🐷✨</p>
-          </div>
+    <section className="categorias">   {/* DESPLEGABLE CATEGORIAS */}
+      <details>
+          <summary className="cat peluches_destacados">✨Peluches destacados✨</summary>
+          <div className="contenido">
 
-          <div className="card">
-            <img src="./public/img/Makuin.jpg" alt="Conejito pastel" />
-            <h3>Gatito Illumia</h3>
-            <p>El clásico que inspiró todo 🖤🤍</p>
-          </div>
+              <article className="peluche-card">
+                  <img src="img_index/tortuga_daisy_cat.jpg" alt="Tortuga Daisy" />
+                  <h3>Tortuga Daisy</h3>
+                  <p className="precio">$16.000</p>
 
-          <div className="card">
-            <img src="./public/img/Makuin.jpg" alt="Conejito pastel" /> 
-            <h3>Conejito pastel</h3>
-            <p>Pequeño y adorable 🩷</p>
+                  <Link to="#">
+                    <a className="ver-detalle">Ver más</a>
+                  </Link>
+              </article>
+
+              <article className="peluche-card">
+                  <img src="img_index/vaca_josefina_cat.jpg" alt="Vaca Josefina" />
+                  <h3>Vaca Josefina</h3>
+                  <p className="precio">$23.000</p>
+
+                  <Link to="#">
+                    <a className="ver-detalle">Ver más</a>
+                  </Link>
+              </article>
+
+              <article className="peluche-card">
+                  <img src="img_index/serpiente_confeti_cat.jpg" alt="Serpiente Confeti" />
+                  <h3>Serpiente Confeti</h3>
+                  <p className="precio">$7.800</p>
+
+                  <Link to="#">
+                    <a className="ver-detalle">Ver más</a>
+                  </Link>
+              </article>
+
+              <article className="peluche-card">
+                  <img src="img_index/serpiente_confeti_cat.jpg" alt="Serpiente Confeti" />
+                  <h3>Serpiente Confeti</h3>
+                  <p className="precio">$7.800</p>
+
+                  <Link to="#">
+                    <a className="ver-detalle">Ver más</a>
+                  </Link>
+              </article>
           </div>
-        </div>
-      </section>
-    </div>
+      </details>
+
+      <details>
+          <summary className="cat patrones_destacados">✨Patrones destacados✨</summary>
+          <div className="contenido">
+              
+          </div>
+      </details>
+    </section>
+
   );
 };
 

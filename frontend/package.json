@@ -10,6 +10,7 @@
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
+    "react-router-dom": "^7.9.5",
     "axios": "latest"
   },
   "devDependencies": {
