@@ -1,24 +1,29 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
 
 import Home from "./pages/Home";
 import Peluches from "./pages/Peluches";
 import Patrones from "./pages/Patrones";
-import Peluches from "./pages/Peluches";
 import Nosotros from "./pages/Nosotros";
-import Carrito_vista from "./pages/Carrito_vista";
-import Carrito_formulario from "./pages/Carrito_formulario";
+import CarritoVista from "./pages/Carrito_vista";
+import CarritoFormulario from "./pages/Carrito_formulario";
 
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-
 
 function App() {
   return (
     <Router>
       <Navbar />
 
-      <Home />
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/peluches" element={<Peluches />} />
+        <Route path="/patrones" element={<Patrones />} />
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/carrito" element={<CarritoVista />} />
+        <Route path="/checkout" element={<CarritoFormulario />} />
+      </Routes>
 
       <Footer />
     </Router>

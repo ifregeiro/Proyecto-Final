@@ -1,0 +1,62 @@
+:root {
+  --blanco: #fbfbed;
+  --beige: #e6e6ce;
+  --negro: #1a1a1a;
+  --indigo: #659dff;
+  --celeste: #92ccf8;
+  --rosita: #facec8;
+  --amarillo: #f8fe49;
+}
+
+.formulario-envio {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  color: var(--indigo);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.campo input,
+.campo textarea {
+  border-radius: 8px;
+  border: none;
+  padding: 0.6rem;
+  background: var(--beige);
+  color: var(--negro);
+  outline: none;
+}
+
+.campo textarea {
+  resize: none;
+  height: 80px;
+}
+
+.botonera {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.botonera button {
+  background: var(--rosita);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  color: var(--indigo);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botonera button:hover {
+  background: var(--indigo);
+  color: var(--amarillo);
+}
