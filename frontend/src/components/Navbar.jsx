@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import React from "react";
 
+import imgLogo from "../img/logo.png";
+
 const Navbar = () => {
   return (
     <header className="nav-bar">
@@ -14,7 +16,7 @@ const Navbar = () => {
 
         <div className="logo">
           <h1>Illumia</h1>
-          <img src="/img_index/logo.png" alt="logo" />
+          <img src={imgLogo} alt="logo" />
         </div>
 
         <ul className="nav-derecha">

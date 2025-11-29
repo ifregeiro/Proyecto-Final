@@ -6,6 +6,7 @@
   --celeste: #92ccf8;
   --rosita: #facec8;
   --amarillo: #f8fe49;
+  --rojo: #ff4a26;
 }
 
 /* texto mis compras -------------------------------------- */
@@ -32,7 +33,6 @@
     margin: auto;
     padding: 1.5rem;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .carrito-items {
@@ -66,6 +66,7 @@
   justify-content: center;
   align-items: flex-end; /* lo manda a la derecha */
   text-align: right;
+  gap: 0.3rem;   
   flex: 1; /* ocupa todo el espacio restante */
 }
 
@@ -86,9 +87,36 @@
 }
 
 button {
-    background: var(--rosita);
+    background: var(--indigo);
     border: none;
     padding: 0.6rem 1.2rem;
     border-radius: 6px;
-    color: var(--indigo);
+    color: var(--amarillo);
+}
+
+button:hover {
+  background: var(--rosita);
+  color: var(--amarillo);
+}
+
+/* Estado envío */
+.estado {
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  color: var(--indigo);
+}
+
+/* Botón QUITAR */
+.button-eliminar {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.2rem;
+  color: var(--indigo);
+  background-color: var(--celeste);
+  cursor: pointer;
+}
+
+.button-eliminar:hover {
+  color: var(--indigo);
+  background-color: var(--rojo);
 }

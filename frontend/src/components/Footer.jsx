@@ -15,12 +15,12 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="footer-section links">
+        <div className="links">
           <ul>
             <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/colecciones">Colecciones</Link></li>
-            <li><Link to="/productos">Productos</Link></li>
-            <li><Link to="/contacto">Contacto</Link></li>
+            <li><Link to="/peluches">Peluches</Link></li>
+            <li><Link to="/patrones">Patrones</Link></li>
+            <li><Link to="/nosotros">Nosotros</Link></li>
           </ul>
         </div>
 

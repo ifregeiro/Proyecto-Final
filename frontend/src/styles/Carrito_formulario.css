@@ -30,8 +30,7 @@
   border-radius: 8px;
   border: none;
   padding: 0.6rem;
-  background: var(--beige);
-  color: var(--negro);
+  background: var(--rosita);
   outline: none;
 }
 
@@ -47,16 +46,16 @@
 }
 
 .botonera button {
-  background: var(--rosita);
+  background: var(--indigo);
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 10px;
-  color: var(--indigo);
+  color: var(--amarillo);
   font-weight: bold;
   cursor: pointer;
 }
 
 .botonera button:hover {
-  background: var(--indigo);
+  background: var(--rosita);
   color: var(--amarillo);
 }

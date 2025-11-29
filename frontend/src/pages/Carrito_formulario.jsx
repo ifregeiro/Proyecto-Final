@@ -18,28 +18,28 @@ export default function CarritoFormulario() {
         <form className="formulario-envio">
 
           <div className="campo">
-            <label>Nombre completo</label>
-            <input type="text" placeholder="Ej: Luna Tejedora" required />
+            <label>Nombre y apellido </label>
+            <input type="text" required />
           </div>
 
           <div className="campo">
             <label>Email</label>
-            <input type="email" placeholder="ejemplo@gmail.com" required />
+            <input type="email" required />
           </div>
 
           <div className="campo">
             <label>Teléfono de contacto</label>
-            <input type="tel" placeholder="Ej: 11 1234 5678" />
+            <input type="tel" required />
           </div>
 
           <div className="campo">
             <label>Dirección</label>
-            <input type="text" placeholder="Calle y número" required />
+            <input type="text" placeholder="Calle, número (piso y num depto de ser necesario)" required />
           </div>
 
           <div className="campo">
             <label>Ciudad</label>
-            <input type="text" placeholder="Ej: Buenos Aires" required />
+            <input type="text" required />
           </div>
 
           <div className="campo">
@@ -53,12 +53,12 @@ export default function CarritoFormulario() {
           </div>
 
           <div className="campo">
-            <label>Notas mágicas para Illumia ✨</label>
-            <textarea placeholder="Ej: es un regalo, sin boleta, en bolsa linda 🩷"></textarea>
+            <label>Notas para el envio ✨</label>
+            <textarea placeholder="Ej: es un regalo 🩷"></textarea>
           </div>
 
           <div className="botonera">
-            <button type="submit">Ir a pagar 💳</button>
+            <button type="submit">Ir a pagar</button>
           </div>
 
         </form>

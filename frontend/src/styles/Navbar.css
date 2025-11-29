@@ -11,7 +11,7 @@
 /* Contenedor interno del nav */
 .nav-contenedor {
     background-color: var(--rosita);
-    color: var(--blanco);
+    color: var(--celeste);
     display: flex;
     justify-content: space-between;
     align-items: center;
