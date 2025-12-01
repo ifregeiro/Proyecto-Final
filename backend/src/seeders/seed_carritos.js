@@ -5,5 +5,6 @@ export default async function seedCarritos() {
     { id_usuario: 1 },
     { id_usuario: 2 },
     { id_usuario: 3 },
+    { id_usuario: 4 },
   ]);
 }

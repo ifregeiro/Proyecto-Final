@@ -3,19 +3,19 @@ import Coleccion from "../models/Coleccion.js";
 export default {
   async crear(req, res) {
     try {
-      const coleccion = await Coleccion.create(req.body);
-      return res.status(201).json(coleccion);
+      const nueva = await Coleccion.create(req.body);
+      res.status(201).json(nueva);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al crear colección" });
     }
   },
 
   async listar(req, res) {
     try {
-      const colecciones = await Coleccion.findAll();
-      return res.json(colecciones);
+      const lista = await Coleccion.findAll();
+      res.json(lista);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al listar colecciones" });
     }
   }
 };

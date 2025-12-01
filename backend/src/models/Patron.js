@@ -4,15 +4,14 @@ import { sequelize } from "../database/database.js";
 const Patron = sequelize.define(
   "patrones",
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     nombre: { type: DataTypes.STRING(255), allowNull: false },
-    descripcion: DataTypes.TEXT,
-    precio: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
-    dificultad: {
-      type: DataTypes.ENUM("facil", "intermedio", "avanzado"),
-    },
+    descripcion: { type: DataTypes.TEXT },
+    precio: { type: DataTypes.DECIMAL(10,2), allowNull: false },
+    dificultad: { type: DataTypes.ENUM("facil", "intermedio", "avanzado") },
     disponibilidad: { type: DataTypes.BOOLEAN, defaultValue: true },
-    id_coleccion: { type: DataTypes.INTEGER },
+    id_coleccion: { type: DataTypes.INTEGER, allowNull: true },
+    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   },
   { timestamps: false }
 );

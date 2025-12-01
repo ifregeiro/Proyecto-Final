@@ -1,16 +1,14 @@
 import { Router } from "express";
-import * as controller from "../controllers/carritos.controller.js";
-import authMiddleware from "../middlewares/authMiddleware.js";
+import {
+  obtenerCarrito,
+  agregarItem,
+  quitarItem
+} from "../controllers/carritos.controller.js";
 
 const router = Router();
 
-// Todas las acciones del carrito requieren autenticación
-router.post("/", authMiddleware, controller.crearCarrito);
-router.get("/:id", authMiddleware, controller.obtenerCarrito);
-
-// Items del carrito
-router.post("/:id/items", authMiddleware, controller.agregarItem);
-router.delete("/:id/items/:itemId", authMiddleware, controller.eliminarItem);
-router.put("/:id/items/:itemId", authMiddleware, controller.actualizarCantidad);
+router.get("/", obtenerCarrito);        // GET /api/carrito
+router.post("/item", agregarItem);      // POST /api/carrito/item
+router.delete("/item/:itemId", quitarItem);
 
 export default router;

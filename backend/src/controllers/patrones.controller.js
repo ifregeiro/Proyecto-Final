@@ -6,35 +6,54 @@ export default {
   async crear(req, res) {
     try {
       const nuevo = await Patron.create(req.body);
-      return res.status(201).json(nuevo);
+      res.status(201).json(nuevo);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al crear patrón" });
     }
   },
 
   async listar(req, res) {
     try {
-      const items = await Patron.findAll({
+      const { ids } = req.query;
+      let where = {};
+
+      // ⭐ Soporte para /patrones?ids=1,2
+      if (ids) {
+        const idArray = ids.split(",").map(Number);
+        where.id = idArray;
+      }
+
+      const patrones = await Patron.findAll({
+        where,
         include: [
-          { model: Coleccion, as: "coleccion" },
-          { model: ImgPatron, as: "imagenes" }
-        ]
+          { model: ImgPatron, as: "imagenes" },
+          { model: Coleccion, as: "coleccion" }
+        ],
       });
-      return res.json(items);
+
+      res.json(patrones);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al listar patrones" });
     }
   },
 
   async obtener(req, res) {
     try {
-      const item = await Patron.findByPk(req.params.id, {
-        include: ["imagenes", "coleccion"]
+      const { id } = req.params;
+
+      const patron = await Patron.findByPk(id, {
+        include: [
+          { model: ImgPatron, as: "imagenes" },
+          { model: Coleccion, as: "coleccion" }
+        ],
       });
-      if (!item) return res.status(404).json({ error: "No encontrado" });
-      return res.json(item);
+
+      if (!patron)
+        return res.status(404).json({ error: "Patrón no encontrado" });
+
+      res.json(patron);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al obtener patrón" });
     }
   }
 };

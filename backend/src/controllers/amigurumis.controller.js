@@ -3,38 +3,60 @@ import ImgAmigurumi from "../models/ImgAmigurumi.js";
 import Coleccion from "../models/Coleccion.js";
 
 export default {
+  // Crear
   async crear(req, res) {
     try {
       const nuevo = await Amigurumi.create(req.body);
-      return res.status(201).json(nuevo);
+      res.status(201).json(nuevo);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al crear amigurumi", detalle: error.message });
     }
   },
 
+  // Listar
   async listar(req, res) {
     try {
-      const items = await Amigurumi.findAll({
+      const { ids } = req.query;
+      let where = {};
+
+      // ⭐ Si vienen IDs, filtramos
+      if (ids) {
+        const idArray = ids.split(",").map(Number);
+        where.id = idArray;
+      }
+
+      const amigurumis = await Amigurumi.findAll({
+        where,
         include: [
-          { model: Coleccion, as: "coleccion" },
-          { model: ImgAmigurumi, as: "imagenes" }
-        ]
+          { model: ImgAmigurumi, as: "imagenes" },
+          { model: Coleccion, as: "coleccion" }
+        ],
       });
-      return res.json(items);
+
+      res.json(amigurumis);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al listar amigurumis" });
     }
   },
 
+  // Obtener por ID
   async obtener(req, res) {
     try {
-      const item = await Amigurumi.findByPk(req.params.id, {
-        include: ["imagenes", "coleccion"]
+      const { id } = req.params;
+
+      const amigurumi = await Amigurumi.findByPk(id, {
+        include: [
+          { model: ImgAmigurumi, as: "imagenes" },
+          { model: Coleccion, as: "coleccion" }
+        ],
       });
-      if (!item) return res.status(404).json({ error: "No encontrado" });
-      return res.json(item);
+
+      if (!amigurumi)
+        return res.status(404).json({ error: "Amigurumi no encontrado" });
+
+      res.json(amigurumi);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al obtener amigurumi" });
     }
   }
 };

@@ -6,14 +6,14 @@ const Pedido = sequelize.define(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     id_usuario: { type: DataTypes.INTEGER, allowNull: false },
-    total: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
+    total: { type: DataTypes.DECIMAL(10,2), allowNull: false },
     estado: {
-      type: DataTypes.ENUM("pendiente", "pagado", "enviado", "entregado", "cancelado"),
-      defaultValue: "pendiente",
+      type: DataTypes.ENUM("pendiente","pagado","enviado","entregado","cancelado"),
+      defaultValue: "pendiente"
     },
-    codigo_postal: DataTypes.STRING(20),
-    direccion_envio: DataTypes.STRING(255),
-    creado_en: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    direccion_envio: { type: DataTypes.STRING(255) },
+    codigo_postal: { type: DataTypes.STRING(20) },
+    creado_en: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
   },
   { timestamps: false }
 );

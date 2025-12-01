@@ -1,0 +1,61 @@
+:root {
+    --blanco: #fbfbed;
+    --beige: #e6e6ce;
+    --negro: #1a1a1a;
+    --indigo: #659dff;
+    --celeste: #92ccf8;
+    --rosita: #facec8;
+    --amarillo: #f8fe49;
+}
+
+/* Galería de peluches ----------------------------*/
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 3rem;
+  justify-items: center;
+}
+
+.patron-card {
+  background: var(--rosita);
+  border-radius: 10px;
+  box-shadow: none;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.2s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.patron-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.patron-card h3 {
+  color: var(--indigo);
+  margin: 0.8rem 0 0.3rem;
+}
+
+.precio {
+  color: var(--amarillo);
+  font-weight: 600;
+}
+
+.ver-detalle {
+  display: inline-block;
+  margin-top: 0.6rem;
+  background: var(--celeste);
+  color: var(--amarillo);
+  padding: 0.5rem 7rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.ver-detalle:hover {
+  background: var(--indigo);
+}

@@ -1,0 +1,122 @@
+:root {
+  --blanco: #fbfbed;
+  --beige: #e6e6ce;
+  --negro: #1a1a1a;
+  --indigo: #659dff;
+  --celeste: #92ccf8;
+  --rosita: #facec8;
+  --amarillo: #f8fe49;
+  --rojo: #ff4a26;
+}
+
+/* texto mis compras -------------------------------------- */
+.compras-contenido {
+    text-align: center;
+    padding: 2rem;
+}
+
+.compras-contenido h2 {
+    color: var(--indigo);
+    margin-bottom: 0.5rem;
+}
+
+.compras-contenido p {
+    color: var(--indigo);
+    margin-bottom: 2rem;
+}
+
+/*  Carrito -------------------------------------------------- */
+.carrito {
+    background-color: var(--celeste);
+    width: 80%;
+    max-width: 700px;
+    margin: auto;
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.carrito-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item {
+  background: var(--rosita);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem; /* más espacio interno */
+  position: relative;
+}
+
+.item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0; /* evita que se achique */
+  margin-right: 1rem;
+}
+
+/* contenedor del texto a la derecha */
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end; /* lo manda a la derecha */
+  text-align: right;
+  gap: 0.3rem;   
+  flex: 1; /* ocupa todo el espacio restante */
+}
+
+.info h3 {
+    margin: 0;
+    color: var(--indigo);
+}
+
+.estado {
+    font-size: 0.9rem;
+    color: var(--celeste);
+    opacity: 0.8;
+}
+
+.carrito-total {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+button {
+    background: var(--indigo);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    color: var(--amarillo);
+}
+
+button:hover {
+  background: var(--rosita);
+  color: var(--amarillo);
+}
+
+/* Estado envío */
+.estado {
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  color: var(--indigo);
+}
+
+/* Botón QUITAR */
+.button-eliminar {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.2rem;
+  color: var(--indigo);
+  background-color: var(--celeste);
+  cursor: pointer;
+}
+
+.button-eliminar:hover {
+  color: var(--indigo);
+  background-color: var(--rojo);
+}

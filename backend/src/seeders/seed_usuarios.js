@@ -1,5 +1,6 @@
 import Usuario from "../models/Usuario.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
+
 
 export default async function seedUsuarios() {
   await Usuario.bulkCreate([
@@ -16,6 +17,14 @@ export default async function seedUsuarios() {
       apellido: "Sola",
       email: "lucia@illumia.com",
       contrasenia: await bcrypt.hash("123456", 10),
+      rol: "cliente",
+      ciudad: "Bahía Blanca",
+    },
+    {
+      nombre: "Gabriel",
+      apellido: "Kessler",
+      email: "gabriel@illumia.com",
+      contrasenia: await bcrypt.hash("1234567", 10),
       rol: "cliente",
       ciudad: "Bahía Blanca",
     },

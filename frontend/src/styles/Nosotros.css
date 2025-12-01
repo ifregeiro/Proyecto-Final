@@ -1,0 +1,91 @@
+:root {
+  --blanco: #fbfbed;
+  --beige: #e6e6ce;
+  --negro: #1a1a1a;
+  --indigo: #659dff;
+  --celeste: #92ccf8;
+  --rosita: #facec8;
+  --amarillo: #f8fe49;
+}
+
+body {
+    background-image: url("#");
+    background-size: cover;      /* La imagen cubre toda la pantalla */
+    background-position: center; /* Centrada */
+    background-attachment: fixed; /* Se queda quieta al hacer scroll */
+}
+    
+/* secciones desplegables -------------------------- */
+.categorias {
+    margin: 0.5rem auto;
+    justify-content: center;
+    width: 80rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Cada bloque */
+.categorias details {
+    border: none;
+    justify-content: center;
+    margin-bottom: 5px
+}
+
+/* Encabezado (barra de color) */
+.categorias summary {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    color: var(--indigo);
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* Desplegable ---------------------------------------------- */
+
+/* Diferentes colores */
+.cat.nosotros { 
+    background: var(--rosita);
+}
+
+/* Contenido Desplegable - Cartas */
+.contenido {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.5rem;
+}
+
+.produccion-card, .gestion-card, .desarrollo-card {
+  background: var(--rosita);
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  border-radius: 10px;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.2s ease;
+  width: 100%;
+  max-width: 80rem; 
+  height: 200px;
+}
+
+/* Otros Básicos --------------------------------------- */
+
+h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: var(--indigo);
+}
+
+p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: var(--indigo);
+}

@@ -1,74 +1,66 @@
-import Usuario from "./Usuario.js";
-import Coleccion from "./Coleccion.js";
 import Amigurumi from "./Amigurumi.js";
 import Patron from "./Patron.js";
+import Coleccion from "./Coleccion.js";
 import ImgAmigurumi from "./ImgAmigurumi.js";
 import ImgPatron from "./ImgPatron.js";
+import Usuario from "./Usuario.js";
 import Carrito from "./Carrito.js";
 import CarritoItem from "./CarritoItem.js";
 import Pedido from "./Pedido.js";
 import PedidoItem from "./PedidoItem.js";
 
-/* ---------------------- RELACIONES ---------------------- */
-
-// Usuario → Carrito
-Usuario.hasOne(Carrito, { foreignKey: "id_usuario", onDelete: "CASCADE" });
-Carrito.belongsTo(Usuario, { foreignKey: "id_usuario" });
-
-// Colección → Amigurumis
+// COLECCIONES
 Coleccion.hasMany(Amigurumi, { foreignKey: "id_coleccion" });
-Amigurumi.belongsTo(Coleccion, { foreignKey: "id_coleccion" });
+Amigurumi.belongsTo(Coleccion, { foreignKey: "id_coleccion", as: "coleccion" });
 
-// Colección → Patrones
 Coleccion.hasMany(Patron, { foreignKey: "id_coleccion" });
-Patron.belongsTo(Coleccion, { foreignKey: "id_coleccion" });
+Patron.belongsTo(Coleccion, { foreignKey: "id_coleccion", as: "coleccion" });
 
-// Amigurumi → Imagenes
-Amigurumi.hasMany(ImgAmigurumi, {
-  foreignKey: "id_amigurumi",
-  onDelete: "CASCADE",
-});
+// IMÁGENES
+Amigurumi.hasMany(ImgAmigurumi, { foreignKey: "id_amigurumi", as: "imagenes" });
 ImgAmigurumi.belongsTo(Amigurumi, { foreignKey: "id_amigurumi" });
 
-// Patron → Imagenes
-Patron.hasMany(ImgPatron, {
-  foreignKey: "id_patron",
-  onDelete: "CASCADE",
-});
+Patron.hasMany(ImgPatron, { foreignKey: "id_patron", as: "imagenes" });
 ImgPatron.belongsTo(Patron, { foreignKey: "id_patron" });
 
-// Carrito → Items
-Carrito.hasMany(CarritoItem, {
-  foreignKey: "id_carrito",
-  onDelete: "CASCADE",
-});
+// USUARIO → CARRITO
+Usuario.hasOne(Carrito, { foreignKey: "id_usuario" });
+Carrito.belongsTo(Usuario, { foreignKey: "id_usuario" });
+
+// CARRITO → ITEMS
+Carrito.hasMany(CarritoItem, { foreignKey: "id_carrito" });
 CarritoItem.belongsTo(Carrito, { foreignKey: "id_carrito" });
 
-// Carrito Items → Productos
+// ITEMS → productos
 Amigurumi.hasMany(CarritoItem, { foreignKey: "id_amigurumi" });
-Patron.hasMany(CarritoItem, { foreignKey: "id_patron" });
+CarritoItem.belongsTo(Amigurumi, { foreignKey: "id_amigurumi" });
 
-// Pedido → Usuario
-Usuario.hasMany(Pedido, { foreignKey: "id_usuario", onDelete: "CASCADE" });
+Patron.hasMany(CarritoItem, { foreignKey: "id_patron" });
+CarritoItem.belongsTo(Patron, { foreignKey: "id_patron" });
+
+// PEDIDOS
+Usuario.hasMany(Pedido, { foreignKey: "id_usuario" });
 Pedido.belongsTo(Usuario, { foreignKey: "id_usuario" });
 
-// Pedido → Items
-Pedido.hasMany(PedidoItem, { foreignKey: "id_pedido", onDelete: "CASCADE" });
+Pedido.hasMany(PedidoItem, { foreignKey: "id_pedido" });
 PedidoItem.belongsTo(Pedido, { foreignKey: "id_pedido" });
 
-// Items → Productos
+// Pedido item → productos
 Amigurumi.hasMany(PedidoItem, { foreignKey: "id_amigurumi" });
-Patron.hasMany(PedidoItem, { foreignKey: "id_patron" });
+PedidoItem.belongsTo(Amigurumi, { foreignKey: "id_amigurumi" });
 
-export default {
-  Usuario,
-  Coleccion,
+Patron.hasMany(PedidoItem, { foreignKey: "id_patron" });
+PedidoItem.belongsTo(Patron, { foreignKey: "id_patron" });
+
+export {
   Amigurumi,
   Patron,
+  Coleccion,
   ImgAmigurumi,
   ImgPatron,
+  Usuario,
   Carrito,
   CarritoItem,
   Pedido,
-  PedidoItem,
+  PedidoItem
 };

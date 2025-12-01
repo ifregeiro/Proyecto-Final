@@ -1,67 +1,34 @@
-import { Usuario } from "../models/index.js";
-import bcrypt from "bcryptjs";
+import Usuario from "../models/Usuario.js";
 
 export default {
   async registrar(req, res) {
     try {
-      const { nombre, apellido, email, contrasenia } = req.body;
-
-      const hash = await bcrypt.hash(contrasenia, 10);
-
-      const nuevoUsuario = await Usuario.create({
-        nombre,
-        apellido,
-        email,
-        contrasenia: hash,
-        rol: "usuario" // DEFAULT
-      });
-
-      return res.status(201).json(nuevoUsuario);
+      const nuevo = await Usuario.create(req.body);
+      res.status(201).json(nuevo);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al registrar usuario" });
     }
   },
 
   async listar(req, res) {
     try {
       const usuarios = await Usuario.findAll();
-      return res.json(usuarios);
+      res.json(usuarios);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al listar usuarios" });
     }
   },
 
   async obtener(req, res) {
     try {
       const usuario = await Usuario.findByPk(req.params.id);
-      if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
-      return res.json(usuario);
+
+      if (!usuario)
+        return res.status(404).json({ error: "Usuario no encontrado" });
+
+      res.json(usuario);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
-  },
-
-  async actualizar(req, res) {
-    try {
-      const usuario = await Usuario.findByPk(req.params.id);
-      if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
-
-      await usuario.update(req.body);
-      return res.json(usuario);
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
-  },
-
-  async eliminar(req, res) {
-    try {
-      const usuario = await Usuario.findByPk(req.params.id);
-      if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
-
-      await usuario.destroy();
-      return res.json({ mensaje: "Usuario eliminado" });
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Error al obtener usuario" });
     }
   }
 };

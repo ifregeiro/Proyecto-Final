@@ -1,23 +1,23 @@
 import { Router } from "express";
-import * as controller from "../controllers/pedidos.controller.js";
+import controller from "../controllers/pedidos.controller.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import verifyRole from "../middlewares/verifyRole.js";
 
 const router = Router();
 
-// Crear pedido — usuario autenticado
-router.post("/", authMiddleware, controller.crearPedido);
+// Crear pedido (usuario autenticado)
+router.post("/", authMiddleware, controller.crear);
 
-// Listar pedidos — solo admin
-router.get("/", authMiddleware, verifyRole("admin"), controller.listarPedidos);
+// Listar pedidos (admin ve todos, usuario ve solo los suyos)
+router.get("/", authMiddleware, controller.listar);
 
-// Obtener pedido por id — usuario autenticado (se recomienda validar dueño en el controller)
-router.get("/:id", authMiddleware, controller.obtenerPedido);
+// Obtener pedido por ID (validación de dueño dentro del controller)
+router.get("/:id", authMiddleware, controller.obtener);
 
-// Actualizar estado — solo admin
+// Cambiar estado del pedido (solo admin)
 router.put("/:id", authMiddleware, verifyRole("admin"), controller.actualizarEstado);
 
-// Eliminar pedido — solo admin
-router.delete("/:id", authMiddleware, verifyRole("admin"), controller.eliminarPedido);
+// Eliminar pedido (solo admin)
+router.delete("/:id", authMiddleware, verifyRole("admin"), controller.eliminar);
 
 export default router;

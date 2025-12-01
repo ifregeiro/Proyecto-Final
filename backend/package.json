@@ -2,9 +2,9 @@
   "name": "illumia-backend",
   "version": "0.9.0",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "dev": "node src/server.js",
+    "dev": "node server.js",
     "seed": "node src/seeders/seed.js"
   },
   "dependencies": {

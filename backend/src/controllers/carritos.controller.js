@@ -3,65 +3,73 @@ import CarritoItem from "../models/CarritoItem.js";
 import Amigurumi from "../models/Amigurumi.js";
 import Patron from "../models/Patron.js";
 
-export default {
-  async obtenerCarrito(req, res) {
-    try {
-      const carrito = await Carrito.findOne({
-        where: { id_usuario: req.params.id },
-        include: [
-          {
-            model: CarritoItem,
-            as: "items",
-            include: [
-              { model: Amigurumi, as: "amigurumi" },
-              { model: Patron, as: "patron" }
-            ]
-          }
-        ]
-      });
+export const obtenerCarrito = async (req, res) => {
+  try {
+    const sessionId = req.headers["x-session-id"];
+    if (!sessionId) return res.status(400).json({ error: "Falta sessionId" });
 
-      if (!carrito) {
-        return res.status(404).json({ error: "Carrito no encontrado" });
-      }
+    let carrito = await Carrito.findOne({
+      where: { sessionId },
+      include: [
+        {
+          model: CarritoItem,
+          as: "items",
+          include: [
+            { model: Amigurumi, as: "amigurumi" },
+            { model: Patron, as: "patron" }
+          ]
+        }
+      ]
+    });
 
-      // ❗ Validación de dueño
-      if (carrito.id_usuario !== req.user.id) {
-        return res.status(403).json({ error: "Acceso denegado" });
-      }
-
-      return res.json(carrito);
-
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
+    // Si no existe, lo creo
+    if (!carrito) {
+      carrito = await Carrito.create({ sessionId });
     }
-  },
 
-  async agregarItem(req, res) {
-    try {
-      const { id_carrito, id_amigurumi, id_patron, cantidad } = req.body;
+    return res.json(carrito);
 
-      const carrito = await Carrito.findByPk(id_carrito);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
-      if (!carrito) {
-        return res.status(404).json({ error: "Carrito no encontrado" });
-      }
+export const agregarItem = async (req, res) => {
+  try {
+    const sessionId = req.headers["x-session-id"];
+    if (!sessionId) return res.status(400).json({ error: "Falta sessionId" });
 
-      // ❗ Validación de dueño
-      if (carrito.id_usuario !== req.user.id) {
-        return res.status(403).json({ error: "Acceso denegado" });
-      }
+    let carrito = await Carrito.findOne({ where: { sessionId } });
 
-      const item = await CarritoItem.create({
-        id_carrito,
-        id_amigurumi,
-        id_patron,
-        cantidad
-      });
-
-      return res.status(201).json(item);
-
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
+    if (!carrito) {
+      carrito = await Carrito.create({ sessionId });
     }
+
+    const { id_amigurumi, id_patron } = req.body;
+
+    const item = await CarritoItem.create({
+      id_carrito: carrito.id,
+      id_amigurumi,
+      id_patron,
+      cantidad: 1
+    });
+
+    return res.status(201).json(item);
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+export const quitarItem = async (req, res) => {
+  try {
+    const { itemId } = req.params;
+
+    await CarritoItem.destroy({ where: { id: itemId } });
+
+    return res.json({ message: "Item eliminado" });
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 };
