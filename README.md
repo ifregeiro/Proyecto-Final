@@ -13,7 +13,7 @@
 
 - React 18 + Vite
 - React Router DOM
-- Context API (manejo global del carrito)
+- Context API (manejo global del carrito, en implementación)
 - Fetch API
 - CSS personalizado
 
